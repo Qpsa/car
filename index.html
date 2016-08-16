@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Demo control</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+</head>
+
+<style>
+
+.wrapper {
+    position: absolute;
+    bottom: 0;
+    width:100%
+}
+
+.side {
+    width: 44%;
+    dislay: block;
+    float: left;
+    height: 100%;
+    margin: 3%;
+}
+
+.control {
+    width:100px;
+    height:100px;
+    display: block;
+    background-color: cadetblue;
+    border:solid 1px black;
+    text-align: center;
+    line-height: 100px;
+
+    /*Cia kad tekstas nesiselectintu ant clicku */
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+}
+.left .controls .control {
+    float: left;
+}
+.right .controls {
+    float:right;
+}
+
+
+</style>
+
+<body>
+    <div id="message-container"></div>
+    <div class="wrapper">
+        <div class="left side">
+            <div class="controls">
+                <div class="control turn-left" data-action="left"><</div>
+                <div class="control turn-right" data-action="right">></div>
+            </div>
+        </div>
+        <div class="right side">
+            <div class="controls">
+                <div class="control go-forward" data-action="forward">up</div>
+                <div class="control go-back" data-action="back">down</div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Kadangi yra daugiau nei vienas control, tai controls bus masyvas (daug elementu)
+    var controls = document.getElementsByClassName("control");
+
+    for (var i = 0; i < controls.length; i++) {
+
+        controls[i].addEventListener("touchstart", onTouchStart, false);
+        controls[i].addEventListener("touchend", onTouchEnd, false);
+    }
+
+    function onTouchStart(e)
+    {
+
+        handleTouch(this);
+        console.log(e);
+    }
+
+    function onTouchEnd(e)
+    {
+        handleTouchEnd(this);
+        console.log(e);
+    }
+
+    function handleTouch(item)
+    {
+        var action = item.getAttribute("data-action");
+                  
+                  sendSignal(item, "-go");
+
+        document.getElementById("message-container").innerHTML = action;
+    }
+
+    function handleTouchEnd(item)
+    {
+        var action = item.getAttribute("data-action");
+                  
+                  sendSignal(item, "-stop");
+
+        document.getElementById("message-container").innerHTML = action + " ended";
+    }
+
+
+	
+
+function sendSignal(object, direction) {
+	$.get($(object).attr("data-action") + direction, function( data ) {
+		  
+		});
+}
+
+});
+
+
+</script>
+</body>
+</html>

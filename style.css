@@ -1,0 +1,36 @@
+.wrapper {
+    position: absolute;
+    bottom: 0;
+    width:100%
+}
+
+.side {
+    width: 44%;
+    dislay: block;
+    float: left;
+    height: 100%;
+    margin: 3%;
+}
+
+.control {
+    width:100px;
+    height:100px;
+    display: block;
+    background-color: cadetblue;
+    border:solid 1px black;
+    text-align: center;
+    line-height: 100px;
+
+    /*Cia kad tekstas nesiselectintu ant clicku */
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+}
+.left .controls .control {
+    float: left;
+}
+.right .controls {
+    float:right;
+}

@@ -1,0 +1,93 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>
+      Index
+    </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  </head>
+<style>
+	table tr td {
+		width: 200px;
+		height: 100px;
+		background: grey;
+		border: solid 5px white;
+		text-align:center;
+		float: left;
+	}
+	
+	table tr td a {
+		display:block;
+		width:100%;
+		height: 100%;
+		color: white;
+		text-decoration:none;
+		float: left;
+	}
+
+.control {
+width: 140px;
+height:100px;
+display: block;
+background:red;
+}
+
+</style>
+
+  <body>
+    <h1 align="center">
+      Masinos valdymas test
+    </h1>
+<table align="center">
+
+	<tr>
+		<td><div class="move control" data-direction="/forward"></div></td>	
+	</tr>
+</table>
+<table align="center">
+
+	<tr>
+		<td><a class="direction" href=""><h1>&#8592;</h1></a></td>
+		<td><a href=""></a></td>
+		<td><a class="direction" href=""><h1>&#8594;</h1></a></td>	
+	</tr>
+</table>
+<table align="center">
+
+	<tr>
+		<td><div class="move control" data-direction="/back"></div></td>
+	</tr>
+
+</table>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$("a").on("click", function(e) {
+		e.preventDefault();
+	}); 
+	
+	$("div.move").on("touchstart", function(e) {
+
+		sendSignal(this, "-go");
+	});
+
+	$("div.move").on("touchend", function(e) {
+
+		sendSignal(this, "-stop");
+	});
+
+	
+
+function sendSignal(object, direction) {
+	$.get($(object).attr("data-direction") + direction, function( data ) {
+		  
+		});
+} 
+
+});
+
+</script>
+  </body>
+				
+</html>
